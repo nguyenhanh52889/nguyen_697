@@ -1,40 +1,45 @@
 package main
-import "unicode"
+import ( 
+	"unicode"
+	"string"
+	"regexp"
+)
 
 func RemoveEven(input []int) []int{
-	x := make([]int, 0)
+	x := make([]int,len(input))
+	var j int = 0
 
 	for i :=0; i< len(input); i++ {
 		if (input[i] %2 ==1) {
-			x = append(x, input[i])
+			x[j] =input[i]
+			j =j+1
 		}
 	}
-	return x
+	return x[0:j]
 }	
 
-func PowerGenerator(x int) func() int{
-	i:= 1
-	return func()  {
-		i *= x
-		return i
+func PowerGenerator(x int) func() uint{
+	i:= uint(x)
+	return func() (ret uint) {
+		ret =i
+		i = i*uint(x)
+	return 
 	}
 }
 
 	
-func DifferentWordsCount(x string) int {
-    word := ""
-    set := make(map[string]bool)
-    ans := 0
-    for _, c := range (x + " ") {
-        if unicode.IsLetter(c) {
-            word += string(unicode.ToLower(c))
-        } else if word != "" {
-            if !set[word] {
-                ans += 1
-            }
-            set[word] = true
-            word = ""
-        }
+func get_words_from(text string) []string{
+    words:= regexp.MustCompile(`\pL+('\pL+)*`)
+    return words.FindAllString(text, -1)
+}
+func count_words (words []string) int{
+    word_counts := make(map[string]int)
+    for _, word :=range words{
+        word_counts[word]++
     }
-    return ans
+    return len(word_counts);
+}
+func DifferentWordsCount(x string) int{
+	x =strings.ToLower(x)
+	return count_words(get_words_from(x))
 }
