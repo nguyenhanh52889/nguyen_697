@@ -2,16 +2,14 @@ package main
 import "unicode"
 
 func RemoveEven(input []int) []int{
-	x := make([]int,len(input))
-	var j int = 0
+	x := make([]int, 0)
 
 	for i :=0; i< len(input); i++ {
 		if (input[i] %2 ==1) {
-			x[j] =input[i]
-			j =j+1
+			x = append(x, input[i])
 		}
 	}
-	return x[0:j]
+	return x
 }	
 
 func PowerGenerator(x int) func() int{
