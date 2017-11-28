@@ -1,5 +1,9 @@
 package main
-import "unicode"
+import ( 
+	"unicode"
+	"strings"
+	"regexp"
+)
 func RemoveEven(input []int) []int{
 	x := make([]int,len(input))
 	var j int = 0
