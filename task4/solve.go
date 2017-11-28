@@ -1,8 +1,6 @@
 package main
-import ( 
-	"unicode"
-	"regexp"
-)
+import "unicode"
+
 func RemoveEven(input []int) []int{
 	x := make([]int,len(input))
 	var j int = 0
@@ -26,18 +24,20 @@ func PowerGenerator(x int) func() uint{
 }
 
 	
-func get_words_from(text string) []string{
-    words:= regexp.MustCompile(`\pL+('\pL+)*`)
-    return words.FindAllString(text, -1)
-}
-func count_words (words []string) int{
-    word_counts := make(map[string]int)
-    for _, word :=range words{
-        word_counts[word]++
+func DifferentWordsCount(x string) int {
+    word := ""
+    set := make(map[string]bool)
+    ans := 0
+    for _, c := range (x + " ") {
+        if unicode.IsLetter(c) {
+            word += string(unicode.ToLower(c))
+        } else if word != "" {
+            if !set[word] {
+                ans += 1
+            }
+            set[word] = true
+            word = ""
+        }
     }
-    return len(word_counts);
-}
-func DifferentWordsCount(x string) int{
-	x =strings.ToLower(x)
-	return count_words(get_words_from(x))
+    return ans
 }
