@@ -1,27 +1,9 @@
 package main
 import ( 
-	"fmt"
 	"strings"
 	"regexp"
 )
 
-func main() {
-	input := []int{0, 3, 2, 5}
-	result := RemoveEven(input)
-	fmt.Println("==========================")
-	fmt.Println(result) // Должно напечататься [3 5]
-	fmt.Println("==========================")
-	gen := PowerGenerator(3)
-	fmt.Println(gen()) // Должно напечатать 3
-	fmt.Println(gen()) // Должно напечатать 9
-	fmt.Println(gen()) // Должно напечатать 27
-	fmt.Println(gen()) // Должно напечатать 81
-	fmt.Println(gen()) // Должно напечатать 243
-	fmt.Println("==========================")
-	fmt.Println(DifferentWordsCount("Hello, world!HELLO  wOrlD...12"))
-	// Должно напечатать 2
-
-}
 func RemoveEven(input []int) []int{
 	x := make([]int,len(input))
 	var j int = 0
