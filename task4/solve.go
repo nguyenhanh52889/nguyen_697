@@ -1,7 +1,6 @@
 package main
 import ( 
 	"unicode"
-	"strings"
 	"regexp"
 )
 func RemoveEven(input []int) []int{
