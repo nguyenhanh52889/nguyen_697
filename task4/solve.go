@@ -14,12 +14,11 @@ func RemoveEven(input []int) []int{
 	return x[0:j]
 }	
 
-func PowerGenerator(x int) func() uint{
-	i:= uint(x)
-	return func() (ret uint) {
-		ret =i
-		i = i*uint(x)
-	return 
+func PowerGenerator(x int) func() int{
+	i:= 1
+	return func()  {
+		i *= x
+		return i
 	}
 }
 
