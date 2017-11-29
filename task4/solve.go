@@ -1,7 +1,6 @@
 package main
 import ( 
-	"unicode"
-	"string"
+	"strings"
 	"regexp"
 )
 
@@ -18,11 +17,11 @@ func RemoveEven(input []int) []int{
 	return x[0:j]
 }	
 
-func PowerGenerator(x int) func() uint{
-	i:= uint(x)
-	return func() (ret uint) {
+func PowerGenerator(x int) func() int{
+	i:= int(x)
+	return func() (ret int) {
 		ret =i
-		i = i*uint(x)
+		i = i*int(x)
 	return 
 	}
 }
