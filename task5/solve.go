@@ -50,7 +50,7 @@ func CreateEndpoint(w http.ResponseWriter, req *http.Request) {
         h := hashids.NewWithData(hd)
         now := time.Now()
         url.ID, _ = h.Encode([]int{int(now.Unix())})
-        url.ShortUrl = "http://localhost:12345/" + url.ID
+        url.ShortUrl = "http://localhost:8082/" + url.ID
         bucket.Insert(url.ID, url, 0)
     } else {
         url = row
@@ -73,5 +73,5 @@ func main() {
     router.HandleFunc("/{id}", RootEndpoint).Methods("GET")
     router.HandleFunc("/expand/", ExpandEndpoint).Methods("GET")
     router.HandleFunc("/create", CreateEndpoint).Methods("PUT")
-    log.Fatal(http.ListenAndServe(":12345", router))
+    log.Fatal(http.ListenAndServe(":8082", router))
 }
